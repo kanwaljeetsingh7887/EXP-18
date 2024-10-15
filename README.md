@@ -1,322 +1,203 @@
-# EXP-17
-
-## Aim:
-**To Implement Stack Implementation Using Array.**
-
-## Software:
-`Microsoft VSCode`
-
-## Theory:
-A stack is a linear data structure that follows the Last In First Out (LIFO) principle, meaning that the last element added to the stack is the first one to be removed. It is commonly used in programming for tasks like expression evaluation, backtracking, recursive function calls, and undo operations in editors.
-
-Key Operations in a Stack:
--Push: Adds an element to the top of the stack. -Pop: Removes and returns the top element from the stack. -Peek/Top: Returns the top element without removing it. -isEmpty: Checks if the stack is empty.
-
-Components of Stack Implementation
-
-Top Variable:
-The variable top is used to keep track of the index of the top element in the stack. Initially, it is set to -1, indicating an empty stack. After each push operation, top is incremented, and after each pop operation, it is decremented.
-
-Push Operation:
-When pushing a new element into the stack, the program checks if the stack has space by comparing top to the maximum size (MAX - 1). If the stack is full, a stack overflow occurs. Otherwise, the new element is added to the array at arr[top + 1], and top is incremented.
-
-Pop Operation:
-When removing an element from the stack, the program checks if the stack is empty by checking if top < 0. If the stack is empty, a stack underflow occurs. Otherwise, the top element is returned, and top is decremented.
-
-Peek Operation:
-This operation allows viewing the top element without removing it from the stack. If the stack is empty (top < 0), it returns an appropriate message.
-
-Stack Overflow: This occurs when trying to push an element onto a stack that has reached its maximum size. The array is full, and no more elements can be added.
-
-Stack Underflow: This occurs when trying to pop an element from an empty stack. There are no elements left to remove.
+# EXP-19
 
 
+#### Aim 
+To study and implement Linked List in C++.
 
-## Code: 17A
+#### Software 
+Visual Studio Code 
+
+#### Theory 
+<ul>
+  A linked list is a fundamental data structure. It mainly allows efficient insertion and deletion operations compared to arrays. Like arrays, it is also used to implement other data structures like stack, queue and deque.
+Linked lists are of several types, including:
+
+Singly Linked List: Each node points to the next node in the sequence.
+
+Doubly Linked List: Each node has pointers to both the next and the previous node.
+
+Circular Linked List: The last node points back to the first node, forming a circle.
+
+
+Comparison of Linked List and Arrays
+
+Linked List:
+
+Data Structure: Non-contiguous
+
+Memory Allocation: Typically allocated one by one to individual elements
+
+Insertion/Deletion: Efficient
+
+Access: Sequential
+
+Array:
+
+Data Structure: Contiguous
+
+Memory Allocation: Typically allocated to the whole array
+
+Insertion/Deletion: Inefficient
+
+Access: Random
+
+</li>
+</ul>
+
+#### Code 
+
 (A) <br> 
 ```cpp
-// NAME - Kanwaljeet singh
-//PRN - 23070123124 
-// EXPERIMET - 17(A) 
+//RIDDHI LOKHANDE
+//23070123107
+//EXP 19 A
+//ENTCB2
+// LINKED LIST 
 
-#include <iostream>
-using namespace std;
-
-const int n = 100;
-int stack[n], top = -1;
-
-void push(int val) {
-    if (top >= n - 1) {
-        cout << "Stack overflow" << endl;
-    } else {
-        stack[++top] = val;
+#include<iostream>
+using namespace std; 
+ 
+ class Link {
+    public:
+    int data;
+    Link* next;
+    Link(int num) {
+        data=num;
+        next=NULL;
     }
-}
+ };
+ void insert_head(Link* &head, int data) {
+    Link* new_node=new Link(data);
+    new_node->next = head; 
+    head = new_node;
+ }
+ void disp(Link* head) {
+    Link* temp = head;
+    while(temp!=NULL) { 
+        cout<<temp->data<<"->";
+        temp = temp->next;
+    } 
+    cout<<"NULL"<<endl;
+ }
 
-void pop() {
-    if (top < 0) {
-        cout << "Stack underflow" << endl;
-    } else {
-        cout << "The popped element is: " << stack[top--] << endl;
-    }
-}
-
-void display() {
-    if (top >= 0) {
-        cout << "Stack elements are: ";
-        for (int i = top; i >= 0; i--) {
-            cout << stack[i] << " ";
-        }
-        cout << endl;
-    } else {
-        cout << "Stack is empty" << endl;
-    }
-}
-
-int main()
-{
-    int ch,val;
-    cout<<"1) Push in stack"<<endl;
-    cout<<"2) Pop from stack"<<endl;
-    cout<<"3) display stack"<<endl;
-    cout<<"4) exit"<<endl;
-
-    do
-    {
-        cout<<"enter choice: "<<endl;
-        cin>>ch;
-        switch(ch)
-        {
-            case 1:
-            {
-                cout<<"enter the value that has to be pushed"<<endl;
-                cin>>val;
-                push(val);
-                break;
-            }
-
-            case 2:
-            {
-                pop();
-                break;
-            }
-            case 3:
-            {
-                display();
-                break;
-            }
-            case 4:
-            {
-                cout<<"exit"<<endl;
-                break;
-            }
-            default:
-            {
-                cout<<"Invalid choice"<<endl;
-            }
-        }
-    }
-    while (ch!=4);
-    return 0;
-}
+ int main() {
+    Link* head = NULL;
+    insert_head(head, 30);
+    disp(head);
+    insert_head(head, 32);
+    disp(head);
+    insert_head(head, 35);
+    disp(head);
+    //l1.disp(); 
+ }  
 ```
 
-## Output:
-![image](https://github.com/user-attachments/assets/4722642c-c087-4388-9b39-c5ba3d50f5de)
+#### Output 
+(A) <br> 
+<img width="635" alt="EXP 17 A OUTPUT" src="https://github.com/user-attachments/assets/f7ae89b9-1815-49d1-bb9c-12ed34806608">
 
 
 
-
-
-
-
-## Code: 17B
+(B) <br> 
 ```cpp
-// NAME - Kanwaljeet singh
-// PRN - 23070123124
-// EXPERIMENT - 17(B) 
+//RIDDHI LOKHANDE
+//23070123107
+//EXP 19 B
+//ENTC B2
+// LINKED LIST 
 
-#include <iostream>
-using namespace std;
-
-#define SIZE 5
-#define ERROR -9999
-
-class Stack {
-    int top;
-    int ar[SIZE];
-public:
-    Stack() {
-        top = -1;
+#include<iostream>
+using namespace std; 
+ 
+class Link {
+    public:
+    int data;
+    Link* next;
+    Link(int num) {
+        data = num;
+        next = NULL;
     }
-    void push(int num);
-    int pop();
-    int peak();
-    void disp();
 };
 
-void Stack::push(int num) {
-    if (top == SIZE - 1) {
-        cout << "STACK OVERFLOW: STACK IS FULL" << endl;
+// Function to insert a new node at the head of the list
+void insert_head(Link* &head, int data) {
+    Link* new_node = new Link(data);
+    new_node->next = head; 
+    head = new_node;
+}
+
+// Function to display the linked list
+void disp(Link* head) {
+    Link* temp = head;
+    while(temp != NULL) { 
+        cout << temp->data << "->";
+        temp = temp->next;
+    } 
+    cout << "NULL" << endl;
+}
+
+// Function to delete a node with a specific value
+void delete_node(Link* &head, int value) {
+    if(head == NULL) {
+        cout << "List is empty, nothing to delete." << endl;
         return;
     }
-    ar[++top] = num;
-}
 
-int Stack::pop() {
-    if (top == -1) {
-        cout << "STACK UNDERFLOW: STACK IS EMPTY" << endl;
-        return ERROR;
-    }
-    return ar[top--];
-}
+    Link* temp = head;
+    Link* prev = NULL;
 
-int Stack::peak() {
-    if (top == -1) {
-        cout << "STACK UNDERFLOW: STACK IS EMPTY" << endl;
-        return ERROR;
-    }
-    return ar[top];
-}
-
-void Stack::disp() {
-    if (top == -1) {
-        cout << "STACK UNDERFLOW: STACK IS EMPTY" << endl;
+    // If the node to be deleted is the head node
+    if(temp != NULL && temp->data == value) {
+        head = temp->next; // Change the head
+        delete temp;       // Free memory
         return;
     }
-    for (int i = 0; i <= top; i++) {
-        cout << ar[i] << " ";
+
+    // Search for the node to be deleted, keeping track of the previous node
+    while(temp != NULL && temp->data != value) {
+        prev = temp;
+        temp = temp->next;
     }
-    cout << endl;
+
+    // If the node was not found
+    if(temp == NULL) {
+        cout << "Node with value " << value << " not found." << endl;
+        return;
+    }
+
+    // Unlink the node from the linked list
+    prev->next = temp->next;
+
+    // Free memory
+    delete temp;
 }
 
 int main() {
-    Stack s1;
-    s1.push(7);
-    s1.push(10);
-    s1.push(4);
-    
-    int val = s1.pop();
-    cout << "Popped value: " << val << endl;
+    Link* head = NULL;
+    insert_head(head, 30);
+    disp(head);
+    insert_head(head, 32);
+    disp(head);
+    insert_head(head, 35);
+    disp(head);
 
-    int topValue = s1.peak();
-    cout << "Top value: " << topValue << endl;
+    // Delete a node 
 
-    cout << "Current stack: ";
-    s1.disp();
+    delete_node(head, 32); // Deleting node with value 32
+    disp(head);
 
-    return 0;
-}
+    delete_node(head, 35); // Deleting node with value 35
+    disp(head);
+
+    delete_node(head, 100); // Attempting to delete a non-existent node
+    disp(head); 
+} 
 ```
 
-## Output:
-![image](https://github.com/user-attachments/assets/4722642c-c087-4388-9b39-c5ba3d50f5de)
+#### Output 
+(B) <br> 
+<img width="634" alt="EXP 17 B OUTPUT" src="https://github.com/user-attachments/assets/f31632a8-583f-46ef-8a3f-6f99c422fb06">
 
 
-## Code: 17C
-```cpp
-// NAME - Kanwaljeet singh
-// PRN - 23070123124
-// EXPERIMENT - 17(C) 
-
-#include <iostream>
-using namespace std;
-#define size 5
-#define error -9999
-
-class stack 
-{
-    int top, ar[size];
-
-public:
-    stack() 
-    {
-        top = -1;
-        ar[0]=0;
-    }
-    void push(int);
-    int pop();
-    int peak();
-    void disp();
-};
-
-void stack::push(int num) 
-{
-    if (top == size - 1) 
-    {
-        cout << "Stack overflow: stack is full" << endl;
-        return;
-    } else 
-    {
-        ar[++top] = num;
-    }
-}
-
-int stack::pop() {
-    int val;
-    if (top == -1) 
-    {  // Corrected this line
-        cout << "Stack underflow: stack is empty" << endl;
-        return error;
-    } else 
-    {
-        val = ar[top--];
-        return val;
-    }
-}
-
-int stack::peak() 
-{
-    if (top == -1) 
-    {
-        cout << "Stack underflow: stack is empty" << endl;
-        return error;
-    } else 
-    {
-        return ar[top];
-    }
-}
-
-void stack::disp() 
-{
-    if (top == -1) 
-    {
-        cout << "Stack underflow: stack is empty" << endl;
-        return;
-    } else 
-    {
-        for (int i = 0; i <= top; i++) 
-        {
-            cout << ar[i] << " ";
-        }
-        cout << endl;
-    }
-}
-
-int main() 
-{
-    stack s1;
-    s1.push(10);
-    s1.push(7);
-    s1.push(4);
-    int val = s1.pop();
-    cout << "Popped value: " << val << endl;
-    int top = s1.peak();
-    cout << "Top value: " << top << endl;
-    cout << "Stack contents: ";
-    s1.disp();
-    return 0;
-}
-```
-## Output:
-![image](https://github.com/user-attachments/assets/7d7dc6c3-981d-419f-b156-6be17ae121e5)
-
-
-
-
-
-
-
-
-### Conclusion:
-We learnt the implementation and study of Stack Implementation Using Array.]
+#### Conclusion 
+I learnt the study and implement Linked List in C++.
