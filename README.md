@@ -1,4 +1,4 @@
-# EXP-19
+# EXP-18
 
 
 #### Aim 
@@ -48,9 +48,9 @@ Access: Random
 
 (A) <br> 
 ```cpp
-//RIDDHI LOKHANDE
-//23070123107
-//EXP 19 A
+//Kanwaljeet singh
+//23070123124
+//EXP 18 A
 //ENTCB2
 // LINKED LIST 
 
@@ -100,9 +100,9 @@ using namespace std;
 
 (B) <br> 
 ```cpp
-//RIDDHI LOKHANDE
-//23070123107
-//EXP 19 B
+//Kanwaljeet singh
+//23070123124
+//EXP 18 B
 //ENTC B2
 // LINKED LIST 
 
