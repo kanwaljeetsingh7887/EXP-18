@@ -94,7 +94,8 @@ using namespace std;
 
 #### Output 
 (A) <br> 
-<img width="635" alt="EXP 17 A OUTPUT" src="https://github.com/user-attachments/assets/f7ae89b9-1815-49d1-bb9c-12ed34806608">
+![image](https://github.com/user-attachments/assets/d2260541-21d8-4728-bd00-62880ab1f58e)
+
 
 
 
